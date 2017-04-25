@@ -35,6 +35,19 @@ class LinkedList {
     else return node;
   }
   
+  addNode(val, i) {
+    if (i === 0) {
+      const oldHead = this.head;
+      this.head = new Node(val);
+      this.head.next = oldHead;
+    } else {
+      const nodeBefore = getNode(i - 1);
+      const oldNext = nodeBefore.next;
+      nodeBefore.next = new Node(val);
+      nodeBefore.next.next = oldNext;
+    }
+  }
+  
   addNodeToEnd(val) {
     if (this.isEmpty()) this.head = new Node(val);
     else this.getTailNode().next = new Node(val);
@@ -45,10 +58,15 @@ class LinkedList {
     if (i === 0) {
       this.head = nodeToRemove.next;
     } else {
-      // TODO: Finish implementation
+      const nodeBefore = getNode(i - 1);
+      nodeBefore.next = nodeBefore.next.next;
     }
   }
 }
 
 
 ```
+
+Some common linked list questions: Reverse a linked list (Leetcode #206), determine if a linked list has a cycle in it (Leetcode #141), find the nth node from the end, delete a (non-tail) node with access to only that node (Leetcode #237).
+
+Also good to be able to compare linked list and array with respect to time complexity of operators.
